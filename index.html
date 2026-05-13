@@ -53,6 +53,83 @@
   }
   .nav-cta:hover { background:#c1121f !important; }
 
+  /* Mobile Menu Toggle */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+  .menu-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    transition: all 0.3s;
+    display: block;
+  }
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+  }
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+  }
+
+  /* Mobile Menu */
+  .nav-links-mobile {
+    display: none;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    background: rgba(15,15,19,0.98);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    gap: 0;
+    z-index: 99;
+    animation: slideDown 0.3s ease-out;
+  }
+  .nav-links-mobile.active {
+    display: flex;
+  }
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .nav-links-mobile a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .nav-links-mobile a:hover {
+    color: var(--white);
+    background: var(--surface);
+  }
+  .nav-links-mobile a.nav-cta {
+    background: var(--accent);
+    color: var(--white) !important;
+    border: none;
+    border-radius: 0;
+  }
+  .nav-links-mobile a.nav-cta:hover {
+    background: #c1121f !important;
+  }
+
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
@@ -63,11 +140,11 @@
   }
   .hero::before {
     content:''; position:absolute; inset:0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     pointer-events: none;
   }
   .hero-inner { max-width:1100px; margin:0 auto; width:100%; display:grid; grid-template-columns:1fr 420px; gap:64px; align-items:center; position:relative; z-index:1; }
-  .hero-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(230,57,70,0.12); border:1px solid rgba(230,57,70,0.3); color:var(--accent); font-size:12px; font-weight:600; letter-spacing:0.8px; text-transform:uppercase; padding:6px 12px; border-radius:20px; margin-bottom:20px; }
+  .hero-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(230,57,70,0.12); border:1px solid rgba(230,57,70,0.3); color:var(--accent); font-size:12px; font-weight:600; letter-spacing:0.5px; padding:8px 12px; border-radius:20px; margin-bottom:16px; }
   .hero-tag::before { content:''; width:6px; height:6px; background:var(--accent); border-radius:50%; animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
   h1 { font-size: clamp(42px, 6vw, 72px); font-weight:800; line-height:1.05; letter-spacing:-2px; color:var(--white); margin-bottom:16px; }
@@ -79,7 +156,7 @@
   .hero-btns { display:flex; gap:12px; flex-wrap:wrap; }
   .btn-primary { background:var(--accent); color:var(--white); text-decoration:none; padding:12px 24px; border-radius:8px; font-weight:600; font-size:14px; transition:all 0.2s; display:inline-flex; align-items:center; gap:8px; }
   .btn-primary:hover { background:#c1121f; transform:translateY(-1px); box-shadow:0 8px 24px rgba(230,57,70,0.3); }
-  .btn-outline { background:transparent; color:var(--text); text-decoration:none; padding:12px 24px; border-radius:8px; font-weight:600; font-size:14px; border:1px solid var(--border); transition:all 0.2s; display:inline-flex; align-items:center; gap:8px; }
+  .btn-outline { background:transparent; color:var(--text); text-decoration:none; padding:12px 24px; border-radius:8px; font-weight:600; font-size:14px; border:1px solid var(--border); transition:all 0.2s; }
   .btn-outline:hover { border-color:var(--muted); background:var(--surface); }
 
   /* ── PHONE MOCKUP ── */
@@ -129,7 +206,7 @@
   .cap-thumb { height:28px; background:linear-gradient(135deg,var(--c1,#2a3a2a),var(--c2,#1a2a1a)); display:flex; align-items:center; justify-content:center; font-size:6px; color:#888; }
   .capsule-label { padding:5px 7px; font-size:7px; color:#ccc; font-weight:600; }
   .capsule-sub { padding:0 7px 5px; font-size:6px; color:#666; }
-  .more-btn { background:rgba(76,201,240,0.1); border:1px solid rgba(76,201,240,0.3); color:#4cc9f0; font-size:7px; font-weight:600; width:100%; padding:7px; border-radius:6px; cursor:pointer; margin-top:4px; text-align:center; }
+  .more-btn { background:rgba(76,201,240,0.1); border:1px solid rgba(76,201,240,0.3); color:#4cc9f0; font-size:7px; font-weight:600; width:100%; padding:7px; border-radius:6px; cursor:pointer; margin-top:4px; }
   /* Add to feed modal */
   .modal-overlay { background:rgba(0,0,0,0.7); border-radius:24px; padding:16px; }
   .modal-box { background:#1e1e1e; border-radius:10px; padding:12px; border:1px solid #333; }
@@ -169,7 +246,7 @@
   .persona-row { display:flex; gap:10px; margin-bottom:10px; }
   .persona-label { font-size:11px; font-weight:700; color:var(--accent); min-width:70px; padding-top:2px; text-transform:uppercase; letter-spacing:0.5px; }
   .persona-val { font-size:13px; color:var(--text); }
-  .persona-quote { background:rgba(255,255,255,0.03); border-left:3px solid var(--accent); padding:10px 14px; border-radius:0 8px 8px 0; font-size:13px; font-style:italic; color:var(--text); margin-top:14px; }
+  .persona-quote { background:rgba(255,255,255,0.03); border-left:3px solid var(--accent); padding:10px 14px; border-radius:0 8px 8px 0; font-size:13px; font-style:italic; color:var(--text); margin-top:12px; }
 
   /* ── COMPETITIVE TABLE ── */
   .comp-table { width:100%; border-collapse:collapse; margin-top:32px; font-size:13px; }
@@ -192,7 +269,7 @@
   .pif-total { background:var(--surface); border:1px solid var(--green); border-radius:12px; padding:20px; text-align:center; margin-top:16px; }
   .pif-total-score { font-size:56px; font-weight:900; color:var(--green); }
   .pif-total-label { font-size:14px; color:var(--text); font-weight:600; }
-  .problem-statement { background:var(--card); border:1px solid rgba(76,201,240,0.3); border-radius:12px; padding:24px; margin-top:24px; font-size:16px; color:var(--text); font-style:italic; line-height:1.7; position:relative; }
+  .problem-statement { background:var(--card); border:1px solid rgba(76,201,240,0.3); border-radius:12px; padding:24px; margin-top:24px; font-size:16px; color:var(--text); font-style:italic; line-height:1.6; position:relative; }
   .problem-statement::before { content:'"'; position:absolute; top:12px; left:20px; font-size:48px; color:var(--blue); opacity:0.3; line-height:1; }
 
   /* ── DESIGN DECISIONS ── */
@@ -227,7 +304,7 @@
   /* ── WHAT'S NEXT ── */
   .next-list { margin-top:24px; display:flex; flex-direction:column; gap:12px; counter-reset:next; }
   .next-item { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px 20px 20px 68px; position:relative; }
-  .next-item::before { counter-increment:next; content:counter(next); position:absolute; left:20px; top:50%; transform:translateY(-50%); width:32px; height:32px; border-radius:50%; background:var(--surface); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:var(--blue); }
+  .next-item::before { counter-increment:next; content:counter(next); position:absolute; left:20px; top:50%; transform:translateY(-50%); width:32px; height:32px; border-radius:50%; background:var(--surface); color:var(--accent); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; border:2px solid var(--border); }
   .next-item h4 { color:var(--white); font-size:14px; margin-bottom:4px; }
   .next-item p { font-size:13px; margin:0; }
 
@@ -248,6 +325,20 @@
     .mortem-grid { grid-template-columns:1fr; }
     .decision-item { grid-template-columns:1fr; gap:8px; }
     .nav-links { display:none; }
+    .menu-toggle { display:flex; }
+    .comp-table { font-size:12px; }
+    .comp-table th, .comp-table td { padding:10px 12px; }
+  }
+
+  @media (max-width: 480px) {
+    nav { padding: 0 16px; }
+    section { padding: 60px 16px; }
+    h1 { font-size: clamp(32px, 5vw, 48px); }
+    h2 { font-size: clamp(20px, 3vw, 28px); }
+    .hero { padding: 80px 16px 60px; }
+    .pif-grid { grid-template-columns:1fr; }
+    .signal-grid { grid-template-columns:1fr; }
+    .metrics-grid { grid-template-columns:1fr; }
   }
 
   /* ── UTILS ── */
@@ -272,6 +363,19 @@
     <a href="#metrics">Metrics</a>
     <a href="https://uncharted-discovery-engine.lovable.app/" target="_blank" class="nav-cta">Prototype →</a>
   </div>
+  <button class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="nav-links-mobile" id="navMobile">
+    <a href="#problem" onclick="closeMobileMenu()">Problem</a>
+    <a href="#personas" onclick="closeMobileMenu()">Personas</a>
+    <a href="#competitive" onclick="closeMobileMenu()">Competitive</a>
+    <a href="#solution" onclick="closeMobileMenu()">Solution</a>
+    <a href="#metrics" onclick="closeMobileMenu()">Metrics</a>
+    <a href="https://uncharted-discovery-engine.lovable.app/" target="_blank" class="nav-cta" onclick="closeMobileMenu()">Prototype →</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -288,7 +392,7 @@
       </div>
       <div class="hero-btns">
         <a href="https://uncharted-discovery-engine.lovable.app/" target="_blank" class="btn-primary">View Prototype →</a>
-        <a href="https://mango-resonance-3bc.notion.site/PRD-Uncharted-AI-Powered-Content-Discovery-for-YouTube-35ec86e82970817390c8c535688d45c7?pvs=73" target="_blank" class="btn-outline">Full PRD ↗</a>
+        <a href="https://mango-resonance-3bc.notion.site/PRD-Uncharted-AI-Powered-Content-Discovery-for-YouTube-35ec86e82970817390c8c535688d45c7?pvs=73" target="_blank" class="btn-outline">Full PRD →</a>
       </div>
     </div>
     <div class="phone-wrap">
@@ -408,7 +512,7 @@
     <p class="lead">It started as a personal observation. The question was: is this one person's experience — or a documented behavioural pattern?</p>
 
     <h3 style="margin-top:32px;">The trigger</h3>
-    <p>A daily YouTube user watched on her husband's account and accidentally discovered Turkish village cooking content. She loved every video. Back on her own account — nothing. She tried to search for it. Didn't know what to search for. That moment of <em>lost discovery</em> is the problem.</p>
+    <p>A daily YouTube user watched on her husband's account and accidentally discovered Turkish village cooking content. She loved every video. Back on her own account — nothing. She tried to search for similar content. No results. The algorithm had already decided what she should watch.</p>
 
     <blockquote style="border-left:3px solid var(--accent);padding:14px 20px;background:rgba(230,57,70,0.06);border-radius:0 8px 8px 0;margin:24px 0;font-style:italic;color:var(--text);">
       "I start searching hopelessly, mostly not finding anything new. Show me stuff I have not seen before — and based on my activity, show it to me on a frequency that suits me."
@@ -440,7 +544,7 @@
 
     <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:24px;">
       <strong style="color:var(--white);display:block;margin-bottom:8px;">The validated pattern</strong>
-      <p style="margin:0;font-size:14px;">Users who watch YouTube heavily develop narrow recommendation profiles — not by choice, but by algorithm design. There is no native mechanism to signal openness or curiosity. Users who want to escape the loop resort to workarounds: incognito mode, using a partner's account, or switching to TikTok. <strong style="color:var(--text);">That last one is the retention risk.</strong></p>
+      <p style="margin:0;font-size:14px;">Users who watch YouTube heavily develop narrow recommendation profiles — not by choice, but by algorithm design. There is no native mechanism to signal openness or change preferences. This creates invisible churn: users don't complain, they just switch to TikTok.</p>
     </div>
   </div>
 </section>
@@ -524,7 +628,7 @@
     </table>
     <div style="background:rgba(230,57,70,0.06);border:1px solid rgba(230,57,70,0.2);border-radius:12px;padding:20px;margin-top:20px;">
       <strong style="color:var(--accent);">The gap no one has filled:</strong>
-      <p style="margin-top:8px;margin-bottom:0;font-size:14px;">Netflix's "Play Something" failure is the signal. Users don't want random — they want <em>intelligently surprising</em>. A mechanism that combines AI inference (detecting disengagement passively) with micro-category specificity (not broad genres — Turkish Village Cooking, not "Food"). That's exactly what Uncharted is.</p>
+      <p style="margin-top:8px;margin-bottom:0;font-size:14px;">Netflix's "Play Something" failure is the signal. Users don't want random — they want <em>intelligently surprising</em>. A mechanism that respects their history while offering genuine novelty.</p>
     </div>
   </div>
 </section>
@@ -536,13 +640,13 @@
     <h2>Why this problem, why now</h2>
     <p class="lead">PIF Framework — Population × Intensity × Frequency. Discovery scores maximum across all three dimensions.</p>
     <div class="pif-grid">
-      <div class="pif-box"><div class="pif-score">5</div><div class="pif-label">Population</div><p style="font-size:12px;margin-top:8px;margin-bottom:0;">Affects every regular user. Not a segment — this is the core homepage experience.</p></div>
-      <div class="pif-box"><div class="pif-score">5</div><div class="pif-label">Intensity</div><p style="font-size:12px;margin-top:8px;margin-bottom:0;">Drives silent platform abandonment. Users don't complain — they open TikTok instead.</p></div>
-      <div class="pif-box"><div class="pif-score">5</div><div class="pif-label">Frequency</div><p style="font-size:12px;margin-top:8px;margin-bottom:0;">Every session. Every homepage load. The narrowing compounds over time.</p></div>
+      <div class="pif-box"><div class="pif-score">5</div><div class="pif-label">Population</div><p style="font-size:12px;margin-top:8px;margin-bottom:0;">Affects every regular user. Not a segment — the default experience.</p></div>
+      <div class="pif-box"><div class="pif-score">5</div><div class="pif-label">Intensity</div><p style="font-size:12px;margin-top:8px;margin-bottom:0;">Drives silent platform abandonment. Users don't report it. They just leave.</p></div>
+      <div class="pif-box"><div class="pif-score">5</div><div class="pif-label">Frequency</div><p style="font-size:12px;margin-top:8px;margin-bottom:0;">Every session. Every homepage load. The narrowing effect compounds daily.</p></div>
     </div>
     <div class="pif-total"><div class="pif-total-score">15/15</div><div class="pif-total-label">Maximum score — P0</div></div>
     <div class="problem-statement" style="padding-left:48px;">
-      Regular YouTube users who have outgrown their algorithmic profile have no way to signal curiosity, mood, or openness to the unknown — and no way to escape their own watch history. They lack a mechanism to discover content that could change the way they think, unless they get lucky.
+      Regular YouTube users who have outgrown their algorithmic profile have no way to signal curiosity, mood, or openness to the unknown — and no way to escape their own watch history. They lack a mechanism to discover what they don't know to search for.
     </div>
   </div>
 </section>
@@ -556,19 +660,19 @@
     <div class="decision-list">
       <div class="decision-item">
         <div><div class="decision-label">Decision</div><div class="decision-val" style="font-weight:700;color:var(--white);">Micro-category capsules, not individual videos</div></div>
-        <div><div class="decision-label">Why</div><div class="decision-why">Individual videos carry creator/production risk. A capsule lets the user assess the entire topic before committing. Lower barrier to curiosity.</div></div>
+        <div><div class="decision-label">Why</div><div class="decision-why">Individual videos carry creator/production risk. A capsule lets the user assess the entire topic before committing. Lower barrier to exploration.</div></div>
       </div>
       <div class="decision-item">
         <div><div class="decision-label">Decision</div><div class="decision-val" style="font-weight:700;color:var(--white);">Feed update only after 2+ videos watched in a category</div></div>
-        <div><div class="decision-label">Why</div><div class="decision-why">Earned preference, not assumed. One video could be accidental. Two is signal. Prevents the algorithm re-narrowing based on a single click.</div></div>
+        <div><div class="decision-label">Why</div><div class="decision-why">Earned preference, not assumed. One video could be accidental. Two is signal. Prevents the algorithm re-narrowing based on accidental plays.</div></div>
       </div>
       <div class="decision-item">
         <div><div class="decision-label">Decision</div><div class="decision-val" style="font-weight:700;color:var(--white);">"+ More" shuffles 3 capsules, not all 7</div></div>
-        <div><div class="decision-label">Why</div><div class="decision-why">Partial shuffle preserves anchoring — known capsules stay visible while allowing exploration. Reduces the cost of trying again.</div></div>
+        <div><div class="decision-label">Why</div><div class="decision-why">Partial shuffle preserves anchoring — known capsules stay visible while allowing exploration. Reduces the cost of trying a new category.</div></div>
       </div>
       <div class="decision-item">
         <div><div class="decision-label">Decision</div><div class="decision-val" style="font-weight:700;color:var(--white);">Named "Uncharted" not "What's New" or "Beyond"</div></div>
-        <div><div class="decision-label">Why</div><div class="decision-why">"What's New" implies recency, not novelty. "Beyond" is vague. "Uncharted" captures the feeling of going somewhere unmapped — sets the right expectation.</div></div>
+        <div><div class="decision-label">Why</div><div class="decision-why">"What's New" implies recency, not novelty. "Beyond" is vague. "Uncharted" captures the feeling of going somewhere unmapped — discovery, not just updates.</div></div>
       </div>
       <div class="decision-item">
         <div><div class="decision-label">Decision</div><div class="decision-val" style="font-weight:700;color:var(--white);">Non-intrusive banner entry point — dismissable, no penalty</div></div>
@@ -685,11 +789,11 @@
       </div>
       <div class="next-item">
         <h4>Creator ecosystem impact</h4>
-        <p>Does Uncharted divert watch time to smaller, niche creators — or just resurface YouTube's existing long-tail in a new UI? This determines whether YouTube can pitch Uncharted as a creator growth tool too.</p>
+        <p>Does Uncharted divert watch time to smaller, niche creators — or just resurface YouTube's existing long-tail in a new UI? This determines whether YouTube can pitch Uncharted as a creator opportunity.</p>
       </div>
       <div class="next-item">
         <h4>Global content quality check</h4>
-        <p>Run the taxonomy against non-English content at scale. The discovery gap may be most acute in markets where the algorithm has the least data — India, Southeast Asia, Latin America. If Uncharted works better there, that's the launch market.</p>
+        <p>Run the taxonomy against non-English content at scale. The discovery gap may be most acute in markets where the algorithm has the least data — India, Southeast Asia, Latin America. If Uncharted fails there, the entire concept fails.</p>
       </div>
     </div>
   </div>
@@ -702,7 +806,7 @@
     <p style="font-size:17px;max-width:500px;margin:0 auto 32px;">Uncharted makes discovery a design decision, not a happy accident.</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
       <a href="https://uncharted-discovery-engine.lovable.app/" target="_blank" class="btn-primary">Try the Prototype →</a>
-      <a href="https://mango-resonance-3bc.notion.site/PRD-Uncharted-AI-Powered-Content-Discovery-for-YouTube-35ec86e82970817390c8c535688d45c7?pvs=73" target="_blank" class="btn-outline">Read the Full PRD ↗</a>
+      <a href="https://mango-resonance-3bc.notion.site/PRD-Uncharted-AI-Powered-Content-Discovery-for-YouTube-35ec86e82970817390c8c535688d45c7?pvs=73" target="_blank" class="btn-outline">Read the Full PRD →</a>
     </div>
   </div>
 </section>
@@ -718,6 +822,20 @@
 </footer>
 
 <script>
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navMobile = document.getElementById('navMobile');
+
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navMobile.classList.toggle('active');
+  });
+
+  function closeMobileMenu() {
+    menuToggle.classList.remove('active');
+    navMobile.classList.remove('active');
+  }
+
   function switchScreen(name) {
     document.querySelectorAll('.screen-content').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -736,6 +854,13 @@
     navLinks.forEach(a => {
       a.style.color = a.getAttribute('href') === '#' + current ? 'var(--white)' : '';
     });
+  });
+
+  // Close mobile menu when clicking on a link
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('nav') && navMobile.classList.contains('active')) {
+      closeMobileMenu();
+    }
   });
 </script>
 </body>
